@@ -25,14 +25,12 @@
       }
     }
     console.log(JSON.stringify(results));
+    for (const result of results) {
+        eval(result.outputText);
+    }
   </script>
   <script type="text/typescript">
-    class ZipCodeValidator {
-      isAcceptable(s: string) {
-        return s.length === 5;
-      }
-    }
-    export { ZipCodeValidator };
+    (function(): void {console.log("Works!")})()
   </script>
 </body>
 </html>
