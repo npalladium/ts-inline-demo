@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TS Inline</title>
+</head>
+<body>
+  <script src="https://unpkg.com/typescript@4.8.4/lib/typescriptServices.js"></script>
+  <script type="module">
+
+    console.dir(ts);
+    console.log(ts.ModuleKind);
+    console.log(ts.transpileModule);
+
+    const scripts = document.getElementsByTagName('script');
+    console.log(JSON.stringify(scripts));
+    let results = [];
+
+    const options = { module: 'ESNext', target: 'CommonJS' };
+
+    for (const script of scripts) {
+      if(script.type == 'text/typescript') {
+        console.log(script)
+        results.push(ts.transpileModule(script.innerHTML, options));
+      }
+    }
+    console.log(JSON.stringify(results));
+  </script>
+  <script type="text/typescript">
+    class ZipCodeValidator {
+      isAcceptable(s: string) {
+        return s.length === 5;
+      }
+    }
+    export { ZipCodeValidator };
+  </script>
+</body>
+</html>
